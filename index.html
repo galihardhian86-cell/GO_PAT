@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GO PAT — Form Pendaftaran</title>
+  <meta name="theme-color" content="#39c7d8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <nav class="nav">
+    <a class="brand" href="#">
+      <img class="brand-logo" id="brandLogo" src="assets/go-pat.png" alt="GO FASTER">
+      <div><strong>GO PAT</strong><span>Registration Portal</span></div>
+    </a>
+    <span class="eyebrow">OPEN REGISTRATION</span>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">GO PA • LEARN • BUILD • GROW</span>`
+      <h1>Siap untuk<br><span style="color:var(--cyan-dark)">GO PAT?</span></h1>
+      <p>Lengkapi pendaftaran, lakukan pembayaran melalui QRIS, lalu upload bukti pembayaran dan bukti follow akun resmi GO PAT.</p>
+      <button class="cta" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Daftar Sekarang <span>→</span></button>
+      <div class="social-row">
+        <a class="social" target="_blank" rel="noopener" href="https://www.instagram.com/gofaster.co/">Instagram @gofaster.co ↗</a>
+        <a class="social" target="_blank" rel="noopener" href="https://www.youtube.com/@GOFASTER-v3c">YouTube GO FASTER ↗</a>
+      </div>
+    </div>
+    <img class="mascot" id="mascot" src="assets/go-pat.png" alt="GO PAT mascot">
+  </section>
+
+  <section class="card" id="register">
+    <div class="steps">
+      <button class="step active" data-step="1">01 <small>Data diri</small></button>
+      <button class="step" data-step="2">02 <small>Pembayaran</small></button>
+      <button class="step" data-step="3">03 <small>Follow akun</small></button>
+      <button class="step" data-step="4">04 <small>Konfirmasi</small></button>
+    </div>
+
+    <form id="registrationForm">
+      <section class="section active" data-section="1">
+        <div class="section-head">
+          <h2>Kenalan dulu 👋</h2>
+          <p>Isi data dengan benar karena akan digunakan sebagai data peserta.</p>
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Nama lengkap <span class="required">*</span></label>
+            <input id="name" required placeholder="Contoh: Ardhian Galih Pratama" autocomplete="name">
+          </div>
+          <div class="field">
+            <label>Email <span class="required">*</span></label>
+            <input id="email" type="email" required placeholder="nama@email.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label>No. WhatsApp <span class="required">*</span></label>
+            <input id="wa" required inputmode="tel" placeholder="08xxxxxxxxxx" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label>Jurusan / Program Studi <span class="required">*</span></label>
+            <input id="major" required placeholder="Contoh: S1 Informatika">
+          </div>
+        </div>
+        <div class="actions">
+          <span></span><button type="button" class="btn primary" onclick="nextStep()">Lanjut →</button>
+        </div>
+      </section>
+
+      <section class="section" data-section="2">
+        <div class="section-head">
+          <h2>Pembayaran 💳</h2>
+          <p>Scan QRIS berikut sesuai nominal pendaftaran yang diinformasikan panitia.</p>
+        </div>
+        <div class="payment">
+          <img class="qris" id="qris" src="assets/qris.png" alt="QRIS pembayaran GO FASTER">
+          <div class="pay-note">
+            <h3>Scan QRIS</h3>
+            <p>Pastikan nama merchant dan nominal pembayaran sudah benar sebelum menyelesaikan transaksi.</p>
+            <ul class="check-list">
+              <li>Simpan bukti transaksi.</li>
+              <li>Pastikan screenshot terbaca jelas.</li>
+              <li>Upload bukti pada bagian berikut.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="field">
+          <label>Bukti pembayaran <span class="required">*</span></label>
+          <div class="upload">
+            <input id="paymentProof" type="file" accept="image/*,.pdf" required onchange="previewFile(this,'paymentPreview','paymentFileName')">
+            <div class="hint">Format: JPG, PNG, WEBP, atau PDF. Maks. 5 MB.</div>
+            <div class="preview" id="paymentPreview"><img id="paymentPreviewImg" alt="Preview bukti pembayaran"><div class="file-name" id="paymentFileName"></div></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn" onclick="prevStep()">← Kembali</button>
+          <button type="button" class="btn primary" onclick="nextStep()">Lanjut →</button>
+        </div>
+      </section>
+
+      <section class="section" data-section="3">
+        <div class="section-head">
+          <h2>Support GO FASTER 🚀</h2>
+          <p>Follow/subscribe akun resmi di bawah, lalu upload bukti masing-masing.</p>
+        </div>
+        <div class="social-card">
+          <div><h3>Instagram</h3><p>@gofaster.co</p></div>
+          <a class="follow-btn" target="_blank" rel="noopener" href="https://www.instagram.com/gofaster.co/">Buka Instagram ↗</a>
+        </div>
+        <div class="field">
+          <label>Bukti follow Instagram <span class="required">*</span></label>
+          <div class="upload">
+            <input id="igProof" type="file" accept="image/*,.pdf" required onchange="previewFile(this,'igPreview','igFileName')">
+            <div class="hint">Upload screenshot yang menunjukkan akunmu sudah follow.</div>
+            <div class="preview" id="igPreview"><img id="igPreviewImg" alt="Preview bukti Instagram"><div class="file-name" id="igFileName"></div></div>
+          </div>
+        </div>
+
+        <div class="social-card">
+          <div><h3>YouTube</h3><p>GO PAT</p></div>
+          <a class="follow-btn" target="_blank" rel="noopener" href="https://www.youtube.com/@GOFASTER-v3c">Buka YouTube ↗</a>
+        </div>
+        <div class="field">
+          <label>Bukti subscribe YouTube <span class="required">*</span></label>
+          <div class="upload">
+            <input id="ytProof" type="file" accept="image/*,.pdf" required onchange="previewFile(this,'ytPreview','ytFileName')">
+            <div class="hint">Upload screenshot yang menunjukkan status subscribe.</div>
+            <div class="preview" id="ytPreview"><img id="ytPreviewImg" alt="Preview bukti YouTube"><div class="file-name" id="ytFileName"></div></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn" onclick="prevStep()">← Kembali</button>
+          <button type="button" class="btn primary" onclick="nextStep()">Review →</button>
+        </div>
+      </section>
+
+      <section class="section" data-section="4">
+        <div class="section-head">
+          <h2>Sudah lengkap? ✨</h2>
+          <p>Periksa kembali data sebelum dikirim. Setelah submit, data akan masuk ke database panitia.</p>
+        </div>
+        <div id="reviewBox" style="display:grid;gap:10px"></div>
+        <label class="consent">
+          <input id="consent" type="checkbox" required>
+          <span>Saya menyatakan data yang saya masukkan benar dan bukti pembayaran/follow yang diunggah merupakan milik saya.</span>
+        </label>
+        <div id="status" class="status"></div>
+        <div class="actions">
+          <button type="button" class="btn" onclick="prevStep()">← Kembali</button>
+          <button type="submit" class="btn primary" id="submitBtn">Kirim Pendaftaran 🚀</button>
+        </div>
+      </section>
+    </form>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2>Pendaftaran berhasil!</h2>
+      <p>Data kamu sudah diterima. Simpan ID pendaftaran berikut untuk keperluan konfirmasi dengan panitia.</p>
+      <div class="reg-id" id="registrationId">GF-000000</div>
+    </div>
+  </section>
+
+  <div class="footer">© GO PAT • Registration Portal</div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
